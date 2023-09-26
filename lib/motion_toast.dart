@@ -32,11 +32,11 @@ class MotionToast extends StatefulWidget {
     this.icon,
     this.leading,
     this.trailing,
-    this.onTap,
     this.title,
     this.width,
     this.height,
     this.constraints,
+    this.onTap,
     this.iconSize = 40,
     this.enableAnimation = true,
     this.layoutOrientation = ToastOrientation.ltr,
@@ -82,6 +82,7 @@ class MotionToast extends StatefulWidget {
     this.width,
     this.height,
     this.constraints,
+    this.onTap,
     this.iconSize = 40,
     this.enableAnimation = true,
     this.layoutOrientation = ToastOrientation.ltr,
@@ -125,6 +126,7 @@ class MotionToast extends StatefulWidget {
     this.width = 350,
     this.height = 80,
     this.constraints,
+    this.onTap,
     this.iconSize = 40,
     this.enableAnimation = true,
     this.layoutOrientation = ToastOrientation.ltr,
@@ -168,6 +170,7 @@ class MotionToast extends StatefulWidget {
     this.width = 350,
     this.height = 80,
     this.constraints,
+    this.onTap,
     this.iconSize = 40,
     this.enableAnimation = true,
     this.layoutOrientation = ToastOrientation.ltr,
@@ -211,6 +214,7 @@ class MotionToast extends StatefulWidget {
     this.width = 350,
     this.height = 80,
     this.constraints,
+    this.onTap,
     this.iconSize = 40,
     this.enableAnimation = true,
     this.layoutOrientation = ToastOrientation.ltr,
@@ -254,6 +258,7 @@ class MotionToast extends StatefulWidget {
     this.width = 350,
     this.height = 80,
     this.constraints,
+    this.onTap,
     this.iconSize = 40,
     this.enableAnimation = true,
     this.layoutOrientation = ToastOrientation.ltr,
@@ -464,6 +469,9 @@ class MotionToast extends StatefulWidget {
   /// default `= true`
   final bool displaySideBar;
 
+  /// function to execute on tap of Toast.
+  final void Function()? onTap;
+
   late BuildContext _context;
 
   /// Display the created motion toast based on the [position] attribute
@@ -498,6 +506,14 @@ class _MotionToastState extends State<MotionToast>
   void _popCurrentToast() {
     if (mounted) {
       Navigator.of(context).pop();
+      widget.onClose?.call();
+    }
+  }
+
+  void _onTapCurrentToast() {
+    if (mounted) {
+      Navigator.of(context).pop();
+      widget.onTap?.call();
       widget.onClose?.call();
     }
   }
@@ -582,7 +598,7 @@ class _MotionToastState extends State<MotionToast>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.dismissable ? _popCurrentToast : null,
+      onTap: widget.dismissable ? _onTapCurrentToast : null,
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SafeArea(

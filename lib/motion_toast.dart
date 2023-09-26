@@ -651,6 +651,8 @@ class _MotionToastState extends State<MotionToast>
         icon: widget.icon,
         iconSize: widget.iconSize,
         radius: widget.borderRadius,
+        leading: widget.leading,
+        trailing: widget.trailing,
         title: widget.title,
         withAnimation: widget.enableAnimation,
         isReversed: widget.layoutOrientation == ToastOrientation.rtl,

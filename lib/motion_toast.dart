@@ -30,6 +30,9 @@ class MotionToast extends StatefulWidget {
     required this.description,
     required this.primaryColor,
     this.icon,
+    this.leading,
+    this.trailing,
+    this.onTap,
     this.title,
     this.width,
     this.height,
@@ -74,6 +77,8 @@ class MotionToast extends StatefulWidget {
     required this.description,
     this.title,
     this.iconType = IconType.materialDesign,
+    this.leading,
+    this.trailing,
     this.width,
     this.height,
     this.constraints,
@@ -115,6 +120,8 @@ class MotionToast extends StatefulWidget {
     required this.description,
     this.title,
     this.iconType = IconType.materialDesign,
+    this.leading,
+    this.trailing,
     this.width = 350,
     this.height = 80,
     this.constraints,
@@ -156,6 +163,8 @@ class MotionToast extends StatefulWidget {
     required this.description,
     this.title,
     this.iconType = IconType.materialDesign,
+    this.leading,
+    this.trailing,
     this.width = 350,
     this.height = 80,
     this.constraints,
@@ -197,6 +206,8 @@ class MotionToast extends StatefulWidget {
     required this.description,
     this.title,
     this.iconType = IconType.materialDesign,
+    this.leading,
+    this.trailing,
     this.width = 350,
     this.height = 80,
     this.constraints,
@@ -238,6 +249,8 @@ class MotionToast extends StatefulWidget {
     required this.description,
     this.title,
     this.iconType = IconType.materialDesign,
+    this.leading,
+    this.trailing,
     this.width = 350,
     this.height = 80,
     this.constraints,
@@ -352,6 +365,16 @@ class MotionToast extends StatefulWidget {
   /// }
   /// ```
   late final IconType? iconType;
+
+  /// The leading widget of the motion toast
+  /// if it's null it will not be rendered in the widget
+  /// by default it's null
+  final Widget? leading;
+
+  /// The trailing widget of the motion toast
+  /// if it's null it will not be rendered in the widget
+  /// by default it's null
+  final Widget? trailing;
 
   /// The motion toast width by default it's set to 250
   final double? width;

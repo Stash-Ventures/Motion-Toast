@@ -18,6 +18,8 @@ class MotionToastContent extends StatelessWidget {
     required this.title,
     required this.withAnimation,
     required this.displaySideBar,
+    this.leading,
+    this.trailing,
     bool isReversed = false,
   }) : super(key: key) {
     _contentLayoutType = ContentLayoutType.values[isReversed ? 1 : 0];
@@ -37,6 +39,12 @@ class MotionToastContent extends StatelessWidget {
 
   /// Icon to display on the toast.
   final IconData? icon;
+
+  /// Leading widget of the toast.
+  final Widget? leading;
+
+  /// Trailing widget of the toast.
+  final Widget? trailing;
 
   /// Set to `true` to show animation of the toast.
   final bool withAnimation;
@@ -70,7 +78,14 @@ class MotionToastContent extends StatelessWidget {
               ),
             ),
           ),
-          if (icon != null)
+          if (leading != null)
+            Row(
+              children: [
+                const Seperator.double(15),
+                leading!,
+              ],
+            ),
+          if (icon != null && leading == null)
             Row(
               children: [
                 const Seperator.double(15),
@@ -109,7 +124,14 @@ class MotionToastContent extends StatelessWidget {
               const Seperator.double(15),
             ],
           ),
-        if (icon != null)
+        if (leading != null)
+          Row(
+            children: [
+              const Seperator.double(15),
+              leading!,
+            ],
+          ),
+        if (icon != null && leading == null)
           Row(
             children: [
               MotionToastIcon(
@@ -138,6 +160,13 @@ class MotionToastContent extends StatelessWidget {
             ),
           ),
         ),
+        if (trailing != null)
+          Row(
+            children: [
+              const Seperator.double(15),
+              trailing!,
+            ],
+          ),
         const Seperator.double(7),
       ],
     );
